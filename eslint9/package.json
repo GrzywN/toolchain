@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "eslint": "9.39.4",
+    "eslint-plugin-no-switch-statements": "1.0.0",
+    "eslint-plugin-sonarjs": "4.0.2",
+    "eslint-plugin-unicorn": "63.0.0"
+  }
+}
