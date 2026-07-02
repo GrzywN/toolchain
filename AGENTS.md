@@ -31,21 +31,6 @@ These are common instructions for GrzywN's agents across all scenarios.
 
 Always state what got installed in final summary. User must audit.
 
-### Verification Before Reporting Done
-**Done means hard, observable, reproducible proof** — a passing test, an E2E run producing the requested behavior, a screenshot showing the UI works, a `curl` returning the expected response. Static checks (typecheck, lint, unit tests) pass on broken code constantly; necessary but never sufficient. Declaring done on belief is a hard failure even if the code happens to be correct.
-
-Before declaring done:
-1. **Run the change end-to-end** through the real entry point (CLI, HTTP, UI flow, build pipeline) and confirm observable behavior matches the request. Skip only if infeasible (no credentials, destructive on shared systems, user said skip) — and say so explicitly.
-2. **Prove every discovery beyond reasonable doubt** — a bug, a root cause, a "here's how it works" conclusion — before you act on or report it; there is always a way to drive doubt lower, so find it. For a bug that means a concrete repro before the fix and the same repro re-run after to confirm the fix lands. Plausible hypotheses, single observations, and second-hand agent claims do not clear this bar.
-3. **Run formatter and CI-equivalent checks locally** (lint, typecheck, tests, build). Don't push and wait for remote CI to surface what you could have caught.
-4. **Review through these lenses, scaling effort to the change** — a one-line fix needs a glance; a large diff warrants a parallel agent per lens. Fix what's real and re-verify:
-   - **Correctness** — tests and build; write missing tests for changed behavior.
-   - **Scope** — cut what the request didn't need: redundant abstractions, out-of-scope refactors, speculative complexity, dead code. For each addition ask "if I delete this, does the feature still work?"
-   - **Edge cases** — nulls, boundaries, errors, concurrency in every changed function.
-   - **Ripple effects** — callers, references, docs, configs, CI, tests for changed symbols.
-
-In the final summary, name the specific verification you ran (e.g., "ran `pnpm test` — 47 passed", "opened the page in Chrome and submitted — UI updated"). If you skipped a step, name which and why — never paper over with "should work" or "looks correct."
-
 ### Work Within Existing Frameworks
 Before adding an interface, class, abstraction, or helper, check whether one already in place is sufficient — if so, use it. Take the time to analyze the workspace first: understanding what already exists is cheaper than writing a duplicate that later has to be reconciled. Extend or compose existing patterns rather than introducing parallel ones; build new only when nothing in place can be made to fit.
 
@@ -72,3 +57,4 @@ Never start a `Monitor` or background process and then issue a long sleep waitin
 - **Size the timers against your expected runtime, and stagger them.** If you believe the job should finish in ~15 min, schedule check-ins both before and around that mark — e.g. one shell exiting at 10 min and another at 20 min — so you catch a death loop, an error, or a hang early instead of discovering it long after. The point of the *earlier* timer is to verify the run is healthy and progressing; the point of the *later* one is to confirm it actually completed within budget rather than silently overrunning.
 - **On each wakeup, actively inspect — don't just glance.** Read the latest logs/output, confirm the job advanced since the last check (new steps, new lines, changed metrics), and look for stall/error signatures. If it overran its budget or shows no progress, treat it as stuck: diagnose, and kill/restart rather than continuing to wait.
 - **Keep the timers running until the work is genuinely done.** When one wakeup shell fires and the work is still in flight, dispatch the next one before returning to wait. The chain of timers must outlive the job, never the other way around.
+
