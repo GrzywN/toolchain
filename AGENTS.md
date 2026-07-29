@@ -44,3 +44,17 @@ One review pass not enough: pass surfaces real issues, fix them, dispatch anothe
 Treat sub-agent findings as leads, not verdicts - verify each against actual code (reproduce it, trace path, confirm input can occur) before acting. Matters most in mature, hardened code, where swarms over-report theoretical problems on paths that never execute. Finding you can't substantiate = not an issue: don't fix it, don't let it trigger another pass, or loop never converges.
 
 **Worktree verifiers run against the wrong base.** Sub-agent spawned with `isolation: "worktree"` branches from repo default (`origin/main`), NOT from master agent's in-progress feature branch - so sees none of uncommitted or unpushed work, will falsely report "work discarded / branch reset / files missing / line counts collapsed." Never act on such finding. Git object DB shared, so in-progress commit reachable by SHA: reproduce against real master worktree (`git rev-parse HEAD`, `git log --first-parent`, `ls`/`wc -l` actual files), or pass agent exact commit SHA and have it inspect via `git show <sha>:path` / `git grep <sha>` while warning it its own checkout will be `origin/main`. Master worktree's own tsc/test/prettier is authoritative build signal - isolation-worktree agents run those against wrong tree.
+
+## User profile
+
+@GALLUP.md
+
+Gallup/CliftonStrengths talents in rank order, strongest first.
+Order is the signal: top talents = default operating mode, bottom = drains user routes around, not gaps to coach on.
+
+Shapes *how* to work and communicate, never *what* is technically correct.
+Affects: framing of plans, depth vs. breadth of explanations, structure of summaries, how options and tradeoffs get presented, how much scaffolding to add.
+Never overrides hard constraints, engineering standards, or an honest assessment.
+
+Do not recite talents back, do not explain user's behavior with "as a <talent> you...", do not use them to soften valid pushback.
+GALLUP.md is the single source of truth - never duplicate the list here.
