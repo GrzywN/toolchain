@@ -35,6 +35,14 @@ Always state what got installed in final summary. User must audit.
 ### Work Within Existing Frameworks
 Before adding interface, class, abstraction, or helper, check if one already in place suffices - if so, use it. Analyze workspace first: understanding what already exists cheaper than writing duplicate that later needs reconciling. Extend or compose existing patterns rather than introducing parallel ones; build new only when nothing in place can be made to fit.
 
+### Regex Is A Last Resort
+Every regex in shipped code is untested risk.
+Before writing one: built-in API (`URL`, `Intl`, `Temporal`, `JSON.parse`) -> string ops (`includes`, `split`, `slice`) -> a validator already in the project -> a stable package. Regex only if all four fail.
+Taking a dependency for correctness overrides the no-new-dependency default and YAGNI. Add it.
+Never hand-roll: email (schema validator or `email-validator`; real validation is a confirmation link), phone (`libphonenumber-js`), URL/host (`new URL`, `tldts`), dates (`Temporal`), semver/IBAN/postal/currency (domain package), any structured format (a parser; for code `ts-morph` or `comby`, never text substitution).
+Survivors live in one patterns module as named exports, each with a colocated test: valid, invalid, empty, unicode, adversarial. No inline literals.
+E2E: role/label/test-id locators and exact assertions over `toMatch` and regex URL matchers. A regex assertion can pass for the wrong reason. If a test needs one, import it from the patterns module.
+
 ### Maximize Parallelization via Sub-Agents
 Dispatch independent work to sub-agents aggressively, incl swarms of them. Any task not requiring massive shared context or exclusive access to race-prone resource (single Android AVD, single dev port, in-progress DB migration, interactive shell session) should be delegated. File searches across repo, isolated edits to unrelated files, build verifications, independent test suites, multi-file refactors with non-overlapping scope, research and exploration: all run faster as parallel sub-agents than serially. Default to delegating; reserve main-thread context for synthesis, decisions, work that must stay coherent. Cost of unnecessary agent small; cost of unnecessarily serializing parallelizable work paid against user's wall-clock time. **Swarm sizing:** 3–20 parallel agents standard working range - use it fully, don't timidly spawn one or two; massive reworks needing broad verification and testing sweeps may scale to 40. Under-provisioning parallelizable task wastes wall-clock time same as serializing it.
 
