@@ -13,6 +13,7 @@ Common instructions for GrzywN's agents, all scenarios.
 - Always check Makefile first, use it for project tasks (build, test, lint, dev, migrations, docker etc). Source of truth for running things in this repo, prefer over calling underlying tools directly or writing files manually e.g. migrations.
 - Always check PR template and CONTRIBUTING.md before opening PR. Contain coding guidelines + full checklist PR must pass. Follow every time.
 - No obvious/redundant comments. Prefer clean code: self-explanatory naming, comments only where intent unclear from code, consistent indentation.
+- If you need a paragraph-long comment to justify why the workaround is OK, the code is wrong — fix the code.
 - Never manually modify CHANGELOG.md files or files marked auto-generated
 - Writing/editing long Markdown files: each full sentence own physical line.
   Preserve normal Markdown structure, don't wrap multiple sentences onto one line.
@@ -22,7 +23,7 @@ Common instructions for GrzywN's agents, all scenarios.
   Something looks off, even unrelated to current task, try get it fixed along the way.
 - Same high standard for engineering excellence: lint, test failures, test flakiness.
   See one, even not caused by current work, still get it fixed.
-- npm vs pnpm for agent swarm configs: use pnpm. Faster installs, lower memory/disk usage.
+- npm vs pnpm for agent swarm configs: use pnpm. Faster installs, lower memory/disk usage
 
 ### Ask before
 - System-wide changes hitting unrelated work (global PATH, shell rc files, replacing system Python)
