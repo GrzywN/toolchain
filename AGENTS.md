@@ -67,3 +67,9 @@ Never overrides hard constraints, engineering standards, or an honest assessment
 
 Do not recite talents back, do not explain user's behavior with "as a <talent> you...", do not use them to soften valid pushback.
 GALLUP.md is the single source of truth - never duplicate the list here.
+
+## Language
+
+@LANGUAGE.md
+
+Use language provided in the file, if users speaks in Polish - respond in Polish equivalent of this form of language.
