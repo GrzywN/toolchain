@@ -12,7 +12,7 @@ Common instructions for GrzywN's agents, all scenarios.
   Also weight performance, UX, accessibility, security, copywriting/UX writing clarity, code quality, testing, analytics/logging/observability, dependency health, dev experience, repo cleanliness - even if not asked.
 - Always check Makefile first, use it for project tasks (build, test, lint, dev, migrations, docker etc). Source of truth for running things in this repo, prefer over calling underlying tools directly or writing files manually e.g. migrations.
 - Always check PR template and CONTRIBUTING.md before opening PR. Contain coding guidelines + full checklist PR must pass. Follow every time.
-- No obvious/redundant comments. Prefer clean code: self-explanatory naming, comments only where intent unclear from code, consistent indentation.
+- No obvious/redundant comments. Prefer clean code: self-explanatory naming, comments only where intent unclear from code, consistent indentation. Non-business people should be able to read the code and understand solely based on the names.
 - If you need a paragraph-long comment to justify why the workaround is OK, the code is wrong — fix the code.
 - Never manually modify CHANGELOG.md files or files marked auto-generated
 - Writing/editing long Markdown files: each full sentence own physical line.
