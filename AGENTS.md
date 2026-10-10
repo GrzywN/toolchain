@@ -33,6 +33,11 @@ Common instructions for GrzywN's agents, all scenarios.
 
 Always state what got installed in final summary. User must audit.
 
+## Code navigation
+- For symbol lookups (definition, references, implementations, call hierarchy, type info, symbol search) use the `LSP` tool first.
+- Use Grep/Glob only for free-text or pattern searches (strings, comments, config keys, file names).
+- Fall back to Grep only if the LSP tool returns an error for that file.
+
 ### Work Within Existing Frameworks
 Before adding interface, class, abstraction, or helper, check if one already in place suffices - if so, use it. Analyze workspace first: understanding what already exists cheaper than writing duplicate that later needs reconciling. Extend or compose existing patterns rather than introducing parallel ones; build new only when nothing in place can be made to fit.
 
@@ -67,9 +72,3 @@ Never overrides hard constraints, engineering standards, or an honest assessment
 
 Do not recite talents back, do not explain user's behavior with "as a <talent> you...", do not use them to soften valid pushback.
 GALLUP.md is the single source of truth - never duplicate the list here.
-
-## Language
-
-@LANGUAGE.md
-
-Use language provided in the file, if users speaks in Polish - respond in Polish equivalent of this form of language.
