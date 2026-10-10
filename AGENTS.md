@@ -17,6 +17,7 @@ Common instructions for GrzywN's agents, all scenarios.
 - Never manually modify CHANGELOG.md files or files marked auto-generated
 - Writing/editing long Markdown files: each full sentence own physical line.
   Preserve normal Markdown structure, don't wrap multiple sentences onto one line.
+  Keep markdown files in the 5 minute reading time and low grade.
 - Bug fixes: always start by reproducing bug in E2E setting, close as possible to end-user flow.
   Ensures real problem found, so fix actually solves it.
 - E2E testing product: be picky on UI, obsess over pixel perfection.
@@ -40,6 +41,7 @@ Always state what got installed in final summary. User must audit.
 
 ### Work Within Existing Frameworks
 Before adding interface, class, abstraction, or helper, check if one already in place suffices - if so, use it. Analyze workspace first: understanding what already exists cheaper than writing duplicate that later needs reconciling. Extend or compose existing patterns rather than introducing parallel ones; build new only when nothing in place can be made to fit.
+Check if code is low-quality based on our `Hard constraints` section, if so: prompt a user and suggest a refactoring instead of doing bad practices because other parts of code do.
 
 ### Regex Is A Last Resort
 Every regex in shipped code is untested risk.
