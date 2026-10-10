@@ -6,7 +6,7 @@ Common instructions for GrzywN's agents, all scenarios.
 
 ### Rules
 - No AI/Claude traces in git, ever. No Co-Authored-By, no --author override, no "Generated with" tags. Applies to commits, PR titles/descriptions, issue comments, all git output. Strip if found in existing PRs/issues. Commit author = user, always
-- Never use em dash "—". Use plain dash "-" instead
+- Never use em dash "—". Use plain dash "-" instead unless tone of voice guide says otherwise.
 - Tech decisions: don't weight dev cost much.
   Prefer quality, simplicity, robustness, scalability, long-term maintainability.
   Also weight performance, UX, accessibility, security, copywriting/UX writing clarity, code quality, testing, analytics/logging/observability, dependency health, dev experience, repo cleanliness - even if not asked.
